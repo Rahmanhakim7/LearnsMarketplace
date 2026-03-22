@@ -20,8 +20,6 @@
             }, 5000)
         }
     }" x-init="start" class="relative w-full h-[550px] overflow-hidden">
-
-        <!-- SLIDE 1 -->
         <div x-show="slide === 1" x-transition:enter="transition ease-out duration-700"
             x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
             class="absolute inset-0">
@@ -44,9 +42,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- SLIDE 2 -->
         <div x-show="slide === 2" x-transition:enter="transition ease-out duration-700"
             x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
             class="absolute inset-0">
@@ -69,9 +64,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- SLIDE 3 -->
         <div x-show="slide === 3" x-transition:enter="transition ease-out duration-700"
             x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
             class="absolute inset-0">
@@ -95,24 +87,14 @@
             </div>
         </div>
 
-
-        <!-- BUTTON PREV -->
         <button @click="slide = slide === 1 ? total : slide - 1"
             class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white px-4 py-2 rounded-lg shadow">
-
             ◀
         </button>
-
-
-        <!-- BUTTON NEXT -->
         <button @click="slide = slide === total ? 1 : slide + 1"
             class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white px-4 py-2 rounded-lg shadow">
-
             ▶
         </button>
-
-
-        <!-- DOT INDICATOR -->
         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
             <div @click="slide=1" :class="slide === 1 ? 'bg-white' : 'bg-white/40'"
                 class="w-3 h-3 rounded-full cursor-pointer"></div>

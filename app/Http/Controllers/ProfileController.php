@@ -43,8 +43,15 @@ class ProfileController extends Controller
         $user->email = $request->email;
 
         $user->save();
-
-        return redirect()->route('shop.index')->with('status', 'profile-updated');
+        if ($user->role === 'buyer') {
+            return redirect()->route('shop.index')->with('status', 'profile-updated');
+        } elseif ($user->role === 'seller') {
+            return redirect()->route('seller.dashboard')->with('status', 'profile-updated');
+        } elseif ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard')->with('status', 'profile-updated');
+        }
+        
+        return redirect()->back()->with('status', 'profile-updated');
     }
 
     public function destroy(Request $request): RedirectResponse

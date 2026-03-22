@@ -10,7 +10,17 @@
 </head>
 
 <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
-    @include('layouts.navigation')
+    @auth
+        @if (auth()->user()->role === 'buyer')
+            @include('layouts.navbar.nav-buyer')
+        @elseif(auth()->user()->role === 'seller')
+            @include('layouts.navbar.nav-seller')
+        @elseif(auth()->user()->role === 'admin')
+            @include('layouts.navbar.nav-admin')
+        @endif
+    @else
+        @include('layouts.navbar.nav-guest')
+    @endauth
     <main class="min-h-screen">
         @yield('content')
     </main>
