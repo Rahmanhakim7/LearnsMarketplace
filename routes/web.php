@@ -43,6 +43,7 @@ Route::middleware(['auth', 'role:seller'])->prefix('seller')->name('seller.')->g
     Route::resource('products', SellerProductController::class);
     Route::get('/orders', [SellerOrderController::class, 'index'])->name('orders');
     Route::patch('/order/{order}', [SellerOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::get('/order/{order}', [SellerOrderController::class, 'show'])->name('order.show');
     Route::get('/transactions', [SellerController::class, 'transactions'])->name('transactions');
 });
 

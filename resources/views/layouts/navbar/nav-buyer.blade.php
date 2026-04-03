@@ -8,7 +8,6 @@
                 <a href="{{ route('shop.index') }}" class="text-gray-700 hover:text-indigo-600 font-medium transition">
                     Product
                 </a>
-
                 <a href="{{ route('cart.index') }}" class="text-gray-700 hover:text-indigo-600 font-medium transition">
                     Cart
                 </a>
@@ -18,18 +17,13 @@
                     <details class="group">
                         <summary
                             class="list-none cursor-pointer flex items-center gap-2 font-medium text-gray-700 hover:text-indigo-600">
-
                             <img src="{{ Auth::user()->profile_photo
                                 ? asset('storage/' . Auth::user()->profile_photo)
                                 : 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}"
                                 class="w-8 h-8 rounded-full border">
-
                             {{ Auth::user()->name }}
-
                         </summary>
-
                         <div class="absolute right-0 mt-3 w-52 bg-white border rounded-lg shadow">
-
                             <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100">
                                 Profile
                             </a>

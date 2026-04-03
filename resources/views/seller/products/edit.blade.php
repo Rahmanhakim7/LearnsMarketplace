@@ -37,9 +37,9 @@
             <div class="mb-4">
                 <label for="" class="block text-sm font-medium mb-1" required>Kategori</label>
                 <select name="category_id" class="w-full border rounded p-2">
-                    <option value="" selected>{{ old('category', $product->category->name) }}</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                        <option value="{{ $category->id }}"
+                            {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
                             {{ $category->name }}
                         </option>
                     @endforeach
