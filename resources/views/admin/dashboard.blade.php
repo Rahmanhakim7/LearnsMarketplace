@@ -12,11 +12,5 @@
             <p class="text-sm text-gray-500">Products</p>
             <h3 class="text-2xl font-bold mt-2">{{ $totalProducts }}</h3>
         </div>
-
-        {{-- <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-            <p class="text-sm text-gray-500">Total Transaksi</p>
-            <h3 class="text-2xl font-bold mt-2">Rp 2.500.000</h3>
-        </div> --}}
-
     </div>
 @endsection

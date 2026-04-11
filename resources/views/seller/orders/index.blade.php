@@ -22,10 +22,14 @@
                 @forelse($orders as $item)
                     <tr class="hover:bg-gray-50">
                         <td class="px-4 py-3">
-                            <a href="{{ route('seller.order.show', $item->order->id) }}"
-                                class="text-indigo-600 hover:underline font-medium">
-                                #{{ $item->id }}
-                            </a>
+                            @if ($item->order)
+                                <a href="{{ route('seller.order.show', $item->order->id) }}"
+                                    class="text-indigo-600 hover:underline font-medium">
+                                    #{{ $item->id }}
+                                </a>
+                            @else
+                                <span class="text-gray-400">Order tidak ditemukan</span>
+                            @endif
                         </td>
                         <td class="px-4 py-3 flex items-center gap-3">
                             <img src="{{ asset('storage/' . $item->product->image) }}"
@@ -82,7 +86,6 @@
                         </td>
                     </tr>
                 @endforelse
-
             </tbody>
         </table>
     </div>

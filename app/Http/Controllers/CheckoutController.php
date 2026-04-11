@@ -1,17 +1,24 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
+
 class CheckoutController extends Controller
 {
-    public function index()
+    public function index($cartId)
     {
-        $cart = Cart::with('items.product')->where('user_id', Auth::id())->first();
+        $cart = Cart::with(['items.product', 'seller'])
+            ->where('id', $cartId)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
         return view('checkout.index', compact('cart'));
     }
-    
+
     public function store()
     {
         $cart = Cart::with('items.product')
@@ -38,6 +45,7 @@ class CheckoutController extends Controller
             ]);
         }
         $cart->items()->delete();
+
         return redirect()->route('shop.index')
             ->with('success', 'Order berhasil dibuat');
     }

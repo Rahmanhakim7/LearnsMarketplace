@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyMarketplace</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
 </head>
 
 <body class="bg-gray-50">
@@ -23,9 +21,7 @@
         <div x-show="slide === 1" x-transition:enter="transition ease-out duration-700"
             x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
             class="absolute inset-0">
-
             <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da" class="w-full h-full object-cover">
-
             <div class="absolute inset-0 bg-black/40 flex items-center">
                 <div class="max-w-7xl mx-auto px-6 text-white">
                     <h1 class="text-5xl font-bold mb-4">
@@ -45,9 +41,7 @@
         <div x-show="slide === 2" x-transition:enter="transition ease-out duration-700"
             x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
             class="absolute inset-0">
-
             <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df" class="w-full h-full object-cover">
-
             <div class="absolute inset-0 bg-black/40 flex items-center">
                 <div class="max-w-7xl mx-auto px-6 text-white">
                     <h1 class="text-5xl font-bold mb-4">

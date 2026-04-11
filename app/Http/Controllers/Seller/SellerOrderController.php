@@ -23,7 +23,6 @@ class SellerOrderController extends Controller
     {
         $request->validate([
             'status' => 'required|in:pending,processing,shipped,completed',
-            'tracking_number' => $request->tracking_number,
         ]);
 
         $order = Order::whereHas('items.product', function ($query) {

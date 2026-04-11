@@ -66,9 +66,19 @@
                                           {{ $product->category->name }}
                                       </span>
                                   </div>
+                                  @php
+                                      $avgRating = $product->reviews->avg('rating');
+                                      $totalReview = $product->reviews->count();
+                                  @endphp
                                   <div class="flex items-center text-yellow-400 text-sm mb-2">
-                                      ⭐⭐⭐⭐☆
-                                      <span class="text-gray-500 text-xs ml-2">(4.5)</span>
+                                      @for ($i = 1; $i <= 5; $i++)
+                                          <span>
+                                              {{ $i <= round($avgRating) ? '★' : '☆' }}
+                                          </span>
+                                      @endfor
+                                      <span class="text-gray-500 text-xs ml-2">
+                                          ({{ number_format($avgRating, 1) ?? 0 }})
+                                      </span>
                                   </div>
                                   <p class="text-xs text-gray-500 mb-3">
                                       {{ \Illuminate\Support\Str::limit($product->description, 30) }}

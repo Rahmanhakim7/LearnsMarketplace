@@ -13,24 +13,24 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cart = Cart::where('user_id', Auth::id())->first();
+        $carts = Cart::where('user_id', Auth::id())
+                    ->with(['items.product', 'seller'])
+                    ->get();
 
-        if (!$cart) {
-            $items = collect();
-        } else {
-            $items = $cart->items()->with('product')->get();
-        }
-
-        return view('cart.index', compact('items'));
+        return view('cart.index', compact('carts'));
     }
 
     public function add($productId)
     {
-        $product = Product::find($productId);
-        $cart = Cart::firstOrCreate([
-            'user_id' => Auth::user()->id,
-        ]);
-
+        $product = Product::findOrFail($productId);
+        $sellerId = $product->user_id;
+        $cart = Cart::where('user_id', Auth::id())->where('seller_id', $sellerId)->first();
+        if (!$cart) {
+            $cart = Cart::create([
+                'user_id' => Auth::id(),
+                'seller_id' => $sellerId,
+            ]);
+        }
         $cartItem = $cart->items()->where('product_id', $productId)->first();
         if ($cartItem) {
             $cartItem->increment('quantity');
