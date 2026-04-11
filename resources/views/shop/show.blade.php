@@ -27,13 +27,18 @@
                     {{ $product->description }}
                 </div>
                 <div class="flex gap-4">
-                    <button class="flex-1 bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition">
-                        Add to Cart
-                    </button>
-                    <button
-                        class="flex-1 border border-indigo-600 text-indigo-600 py-3 rounded-lg hover:bg-indigo-50 transition">
-                        Buy Now
-                    </button>
+                    <form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex-1">
+                        @csrf
+                        <button class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition">
+                            Add to Cart      
+                        </button>
+                    </form>
+                    <form action="{{ route('cart.buyNow', $product->id) }}" method="POST" class="flex-1">
+                        @csrf
+                        <button class="w-full border border-indigo-600 text-indigo-600 py-3 rounded-lg hover:bg-indigo-50 transition" >
+                            Buy Now
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

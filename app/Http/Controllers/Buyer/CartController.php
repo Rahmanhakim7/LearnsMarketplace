@@ -45,6 +45,34 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
+    public function buyNow($productId)
+    {
+        $product = Product::findOrFail($productId);
+
+        $sellerId = $product->user_id;
+
+        $cart = Cart::firstOrCreate([
+            'user_id' => Auth::id(),
+            'seller_id' => $sellerId,
+        ]);
+
+        $cartItem = $cart->items()
+            ->where('product_id', $productId)
+            ->first();
+
+        if ($cartItem) {
+            $cartItem->increment('quantity');
+        } else {
+            $cart->items()->create([
+                'product_id' => $productId,
+                'quantity' => 1,
+                'price' => $product->price,
+            ]);
+        }
+
+        return redirect()->route('checkout.index', $cart->id);
+    }
+
     public function remove(CartItem $cartItem)
     {
         if ($cartItem->cart->user_id !== Auth::id()) {
