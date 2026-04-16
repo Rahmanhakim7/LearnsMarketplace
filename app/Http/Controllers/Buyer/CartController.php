@@ -48,18 +48,14 @@ class CartController extends Controller
     public function buyNow($productId)
     {
         $product = Product::findOrFail($productId);
-
         $sellerId = $product->user_id;
-
         $cart = Cart::firstOrCreate([
             'user_id' => Auth::id(),
             'seller_id' => $sellerId,
         ]);
-
         $cartItem = $cart->items()
             ->where('product_id', $productId)
             ->first();
-
         if ($cartItem) {
             $cartItem->increment('quantity');
         } else {
